@@ -1,0 +1,65 @@
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+class MainDemoGUIItemListenerColorLabel implements ItemListener
+{
+	JLabel lbl;
+	List lst;
+
+	void myGUI(){
+		JFrame frm = new JFrame();
+		Container con=frm.getContentPane();//Workable area reference
+
+		//GridLayout flw = new FlowLayout();
+		con.setLayout(new GridLayout(2,1,0,10));
+		lbl= new JLabel("CS Dept NFC IET MULTAN");
+		lst= new List(3,false);
+		Font fnt=new Font("Times New Roman", Font.BOLD,15);
+		lst.add("Red");
+		lst.add("Green");
+		lst.add("Yellow");
+		lst.add("Orange");
+		lst.addItemListener(this);//For event Registration
+
+		con.add(lbl);				
+		con.add(lst);				
+		frm.setSize(300,400);
+		frm.setVisible(true);
+frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+	}
+	public static void main(String[] arg)
+	{
+		MainDemoGUIItemListenerColorLabel o= new MainDemoGUIItemListenerColorLabel();
+		o.myGUI();
+	}
+	public void itemStateChanged(ItemEvent e)
+	{
+		String itemText=lst.getSelectedItem();
+		if (itemText=="Red")
+		{
+			lbl.setForeground(Color.RED);
+		}
+		else if (itemText=="Green")
+		{
+			lbl.setForeground(Color.GREEN);
+		}
+		else if (itemText=="Yellow")
+		{
+			lbl.setForeground(Color.YELLOW);
+		}
+		else if (itemText=="Orange")
+		{
+			lbl.setForeground(Color.ORANGE);
+		}
+
+
+
+		int i=lst.getSelectedIndex();	
+		
+		lbl.setText("index:" + i + " "+ itemText);
+		
+	}
+}
